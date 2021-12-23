@@ -1,6 +1,6 @@
-package main
+package main //每个 Go 源文件必须先声明它所属的包
 
-import (
+import ( //导入程序中所依赖的包
 	"fmt"
 )
 
@@ -9,6 +9,8 @@ func main() {
 	hellowrod()
 	variable()
 	arr1()
+	muil_arr()
+	slice1()
 }
 
 func hellowrod() { // first go
@@ -37,6 +39,29 @@ func arr1() {
 	for i := 1; i < len(arr1); i++ {
 		arr1[i] = i * 2
 	}
+
 	fmt.Println(arr1) //[0 2 4 6 8]
+	arr3 := [...]int{1, 2, 3}
+
+	for k, v := range arr3 { //遍历数组
+		fmt.Println(k, v)
+	}
+
+}
+
+func muil_arr() {
+	var arr0 [5][3]int = [...][3]int{{}, {}, {}, {1, 2, 3}, {4, 5, 6}}
+	var arr2 [2][3]int = [...][3]int{{1, 2, 3}, {7, 8, 9}}
+	fmt.Println(arr2, arr0)
+	// 声明并初始化数组中索引为 1 和 3 的元素
+	var arr4 = [4][2]int{1: {20, 21}, 3: {40, 41}}
+	// 声明并初始化数组中指定的元素
+	arr5 := [4][2]int{1: {0: 20}, 3: {1: 41}}
+	fmt.Println(arr4, arr5)
+}
+
+func slice1() {
+	var a = [3]int{1, 2, 3}
+	fmt.Println(a, a[1:])
 
 }
