@@ -11,6 +11,8 @@ func main() {
 	arr1()
 	muil_arr()
 	slice1()
+	slice2()
+	slice3()
 }
 
 func hellowrod() { // first go
@@ -62,6 +64,45 @@ func muil_arr() {
 
 func slice1() {
 	var a = [3]int{1, 2, 3}
-	fmt.Println(a, a[1:])
+	fmt.Println(a, a[1:])            // 对数组a进行切片
+	var slice_int = []int{1, 2, 3}   // 声明一个全新的切片，类型为int
+	var slice_string []string        //声明一个全新的切片，类型为string
+	slice_make := make([]int, 2, 10) //使用make（）函数声明一个切片
+	fmt.Println("slice_int:", slice_int, "slice_string:", slice_string, "slice_make:", slice_make)
 
+}
+
+func slice2() { //append()
+	a := make([]int, 2, 10)
+	a = append(a, 1, 3, 5) // 追加多个元素, 手写解包方式
+	fmt.Println(a)
+	var b []int
+	b = append(b, []int{2, 4, 6}...) // 追加一个切片, 切片需要解包
+	fmt.Println(b)
+	var c = []int{5, 6, 7}
+	c = append([]int{4}, c...) //在开头添加一个元素
+	fmt.Println("c添加一个元素：", c)
+	c = append([]int{1, 2, 3}, c...) //在开头添加一个切片
+	fmt.Println("c添加一个切片：", c)
+	var d = []int{1, 2, 3, 6, 9}
+	d = append(d[:3], append([]int{4}, d[3:]...)...) // 在下标3处添加一个元素
+	fmt.Println("在第3个下标处，插入一个元素", d)
+	d = append(d[:5], append([]int{7, 8}, d[5:]...)...) //在下标5处，添加一个切片
+	fmt.Println("在第5个下标下，添加一个切片", d)
+
+}
+
+func slice3() { //copy()
+	var srca = []int{1, 2, 3}
+	var desta = []int{4, 5, 6, 7}
+	copy(desta, srca)
+	fmt.Println("拷贝后切片：", desta) // 拷贝源切片中的所有3个元素，替换掉目的切片的前3个元素
+	var srcb = []int{1, 2}
+	var destb []int
+	copy(destb, srcb)
+	fmt.Println(destb) //拷贝后结果为空，因为目的切片内没有元素
+	srcc := []int{1, 2, 3}
+	destc := make([]int, 2, 10)
+	copy(destc, srcc)
+	fmt.Print(destc) //根据目标切片内元素个数，而非提前分配长度进行拷贝
 }
